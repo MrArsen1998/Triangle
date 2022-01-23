@@ -18,7 +18,6 @@ const string S3 = $"{S1} Kevin, welcome to the team!";
 
 var readFunc = Console.ReadLine;
 
-
 if (person is { Address.City: "Caracas" })
     Console.WriteLine("Hello " + person.FirstName);
 
