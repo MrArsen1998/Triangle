@@ -1,31 +1,33 @@
 ﻿using DemoApp;
 
-var height = InputManager.GetUserInputNumber();
-Triangle triangle = new(height);
+Person person = new("James", "Carter");
 
-var height1 = InputManager.GetUserInputNumber();
-Triangle triangle1 = new(height1);
+Console.WriteLine(person);
 
-var height2 = InputManager.GetUserInputNumber();
-Triangle triangle2 = new(height2);
+var anotherPerson = person with { LastName = "Evans" };
 
-var height3 = InputManager.GetUserInputNumber();
-Triangle triangle3 = new(height3);
+Console.WriteLine(anotherPerson);
 
-var height4 = InputManager.GetUserInputNumber();
-Triangle triangle4 = new(height4);
+Console.WriteLine(ReferenceEquals(anotherPerson, person));
+Console.WriteLine(anotherPerson == person);
+Console.WriteLine(anotherPerson.Equals(person));
 
-triangle.DrawTriangle();
-Console.WriteLine();
+const string S1 = $"Hello world";
+const string S2 = $"Hello{" "}World";
+const string S3 = $"{S1} Kevin, welcome to the team!";
 
-triangle1.DrawTriangle();
-Console.WriteLine();
+var readFunc = Console.ReadLine;
 
-triangle2.DrawTriangle();
-Console.WriteLine();
 
-triangle3.DrawTriangle();
-Console.WriteLine();
+if (person is { Address.City: "Caracas" })
+    Console.WriteLine("Hello " + person.FirstName);
 
-triangle4.DrawTriangle();
-Console.WriteLine();
+if (person.Address is null)
+    Console.WriteLine("Address is null");
+
+var fastStrategy = new FastStrategy();
+var slowStrategy = new SlowStrategy();
+var fastBicycle = new Bicycle(fastStrategy);
+var slowBicycle = new Bicycle(slowStrategy);
+
+await Task.WhenAll(fastBicycle.StartRiding(), slowBicycle.StartRiding());

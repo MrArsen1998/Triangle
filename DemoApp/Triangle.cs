@@ -1,4 +1,6 @@
-﻿public class Triangle : ITriangle
+﻿namespace DemoApp;
+
+public class Triangle : ITriangle
 {
     private readonly int _height;
 
