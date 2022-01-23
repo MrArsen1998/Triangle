@@ -2,8 +2,17 @@
 
 public record class Person
 {
-    public Person(string firstName, string lastName)
+    public Person(string firstName, string lastName, Address address)
     {
+        if(string.IsNullOrWhiteSpace(firstName))
+            throw new ArgumentNullException(nameof(firstName));
+
+        if(string.IsNullOrWhiteSpace(lastName))
+            throw new ArgumentNullException(nameof(lastName));
+
+        ArgumentNullException.ThrowIfNull(address);
+
+        Address = address;
         LastName = lastName;
         FirstName = firstName;
     }

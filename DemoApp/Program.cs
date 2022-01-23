@@ -1,6 +1,7 @@
 ﻿using DemoApp;
 
-Person person = new("James", "Carter");
+Address address = new("Gdnask");
+Person person = new("James", "Carter", address);
 
 Console.WriteLine(person);
 
@@ -50,7 +51,7 @@ Console.WriteLine(sizeof(uint));
 Console.WriteLine(sizeof(ulong));
 Console.WriteLine(sizeof(ushort));
 
-await ClientApplication.Main();
+await ClientApplication.MainApp();
 
 await Task.WhenAll(fastBicycle.StartRiding(), slowBicycle.StartRiding());
 
@@ -91,14 +92,16 @@ record CountryCarFactory : ICarFactory
 
 record ClientApplication
 { 
-    private static void ExecuteAppCode(ICarFactory carFactory)
+    private static void ExecuteAppCode(ICarFactory? carFactory)
     {
+        ArgumentNullException.ThrowIfNull(carFactory);
+
         var car = carFactory.CreateCar();
 
         car.Drive();
     }
 
-    public static async Task Main()
+    public static async Task MainApp()
     {
         ICarFactory sportCarFactory = new SportCarFactory();
         ICarFactory countryCarFactory = new CountryCarFactory();

@@ -11,13 +11,13 @@ public class InputManager
 
         while (!success)
         {
-            string input = Console.ReadLine();
+            string input = Console.ReadLine() ?? string.Empty;
             success = int.TryParse(input, out height);
             if (!success)
-            {
-                Console.Clear();
-                Console.Write("Please enter a correct Height: ");
-            }
+                continue;
+            
+            Console.Clear();
+            Console.Write("Please enter a correct Height: ");
         }
 
         return height;
